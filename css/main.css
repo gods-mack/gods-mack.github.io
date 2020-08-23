@@ -306,7 +306,7 @@ strong {
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   font-weight: 700;
-  display: block;
+  display: inline-block;
   background-color: transparent;
   white-space: nowrap;
 }
