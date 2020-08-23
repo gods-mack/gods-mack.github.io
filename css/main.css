@@ -1051,7 +1051,7 @@ strong {
   }
 }
 .footer__links img {
-  display: inline=block;
+  display: none;
   width: 22px;
 }
 @media screen and (max-width: 850px) {
