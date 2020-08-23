@@ -1051,7 +1051,7 @@ strong {
   }
 }
 .footer__links img {
-  display: none;
+  display: inline-blocks;
   
   width: 22px;
 }
