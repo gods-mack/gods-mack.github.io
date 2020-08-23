@@ -11,7 +11,7 @@
 }
 @font-face {
   font-family: Apercu;
-  src: url(../fonts/apercu/Apercu-LightItalic.eot);
+  src: url(../fonts/apercu/Apercu-LightItal-linkic.eot);
   src: url(../fonts/apercu/Apercu-LightItalic.eot?#iefix)
       format("embedded-opentype"),
     url(../fonts/apercu/Apercu-LightItalic.woff2) format("woff2"),
@@ -306,7 +306,7 @@ strong {
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   font-weight: 700;
-  display: inline-block;
+  display: block;
   background-color: transparent;
   white-space: nowrap;
 }
@@ -1051,7 +1051,8 @@ strong {
   }
 }
 .footer__links img {
-  display: none;
+  display: noneow link
+  
   width: 22px;
 }
 @media screen and (max-width: 850px) {
