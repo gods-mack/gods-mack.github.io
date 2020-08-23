@@ -307,7 +307,7 @@ strong {
   transition: all 0.2s ease-in-out;
   font-weight: 700;
   display: inline-block;
-  overflow-wrap: break-word;
+  
   background-color: transparent;
   white-space: nowrap;
 }
@@ -318,7 +318,7 @@ strong {
   bottom: 2px;
   margin-left: 15px;
   content: "";
-  overflow-wrap: break-word;
+ 
   background: url(../img/arrow.png) no-repeat center;
   background-size: 100%;
   width: 15px;
