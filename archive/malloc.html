@@ -15,6 +15,10 @@
         margin-right: 3px;
         border-right: 1000px;
       }
+
+      .lino{
+        margin-left:200px;
+      }
     
 
     </style>
@@ -49,10 +53,30 @@
 
 
 	<h1 class="verticalLine">Malloc in detail and depth</h1>
-	<hr>
+  <p>26 Aug, 2020</p>
+	<hr class="lino">
 
   <p>
     This tutorial needs understanding of pointers as prerequisites.
+    <br>
+    <br>
+    Malloc is a <code>void*</code> return type function in C. Malloc helps to allocate dynamic memory from the heap. 
+    <br>
+    <code>malloc()</code> takes a single argument or the amount of memory to allocate in bytes and returns a pointer to a block of memory.<br>
+    malloc's functional syntax, <br>
+    <code>void *malloc(size_t size);</code> <br>
+    when a program wants memory space from malloc, malloc asks <code>sbrk()</code> to increment the heap size and returns a pointer<br> to the start of the new region on the heap.<br>
+    <code>sbrk()</code> is a unix based system call, actually sbrk is a memory management system call.  
+    <code>sbrk() </code>increments the program's data <br>space by increment bytes.Calling <code>sbrk()</code> with an increment of 0 can be used to find the current location of the program break.<br>
+    <br>
+    Let's come back to the malloc.
+    memory layout of a program.
+    <br>
+    <img src="images/heap.png"></img>
+
+
+
+
   </p>
   
 
