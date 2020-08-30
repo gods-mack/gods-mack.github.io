@@ -120,7 +120,7 @@
         int main(void) {
           &nbsp int *p;
           &nbsp // p = 0x42;
-          &nbsp printf("Pointer before malloc(): %p\n", p);<br>
+          &nbsp printf("Pointer before malloc(): %p\n", &p);<br>
           &nbsp p = (int *)malloc(sizeof(int));<br>
           &nbsp printf("Pointer after malloc(): %p\n", p);  <br>  &nbsp return (0);<br>
       }<br>
