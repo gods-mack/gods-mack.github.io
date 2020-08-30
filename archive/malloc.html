@@ -20,6 +20,15 @@
         margin-left:200px;
       }
 
+      .codebox {
+        border:1px solid black;
+        background-color:#EEEEFF;
+        white-space: pre-line;
+        padding:10px;
+        font-size:0.9em;
+        display: inline-block;
+      }
+
       @media screen and (max-width: 1280px) {
   .section {
     padding: 100px;
@@ -98,6 +107,37 @@
     memory layout of a program.
     <br>
     <img src="images/heap.png"></img>
+    <br>
+    lets know malloc via compiling a program,
+    <br>
+    
+    
+   
+
+      <code class="codebox" style="color:black">
+        #include &ltstdio.h&gt
+        #include &ltstdlib.h&gt
+        int main(void) {
+          &nbsp int *p;
+          &nbsp // p = 0x42;
+          &nbsp printf("Pointer before malloc(): %p\n", p);<br>
+          &nbsp p = (int *)malloc(sizeof(int));<br>
+          &nbsp printf("Pointer after malloc(): %p\n", p);  <br>  &nbsp return (0);<br>
+      }<br>
+
+    </code> <i style="font-size: 13px;">code taken from jraleman's Medium article</i>
+
+    <br>
+    <code style="color:black">
+      <strong>Output</strong><br>
+     Pointer before malloc(): 0x7ffc35b146e0<br>
+      Pointer after malloc(): 0x561099026280
+
+
+    </code>
+
+  
+  
 
 
 
