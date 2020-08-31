@@ -6,6 +6,10 @@
       h2 {text-align: center;}
       p {margin-left: 200px;}
 
+      .maroon{
+        color: maroon;
+      }
+
 
       .verticalLine {
         border-left: 4px solid maroon;
@@ -24,7 +28,7 @@
         border:1px solid black;
         background-color:#EEEEFF;
         white-space: pre-line;
-        padding:10px;
+        padding:4px;
         font-size:0.9em;
         display: inline-block;
       }
@@ -91,22 +95,23 @@
 	<hr class="lino">
 
   <p>
-    This tutorial needs understanding of pointers as prerequisites.
+    This tutorial needs understanding of <a href="https://www.cprogramming.com/tutorial/c/lesson6.html">Pointers</a> as prerequisites.
     <br>
     <br>
-    <strong>Malloc</strong> is a <code>void*</code> return type function in C. Malloc helps to allocate dynamic memory from the heap. 
+    <strong>Malloc</strong> is a <code class="maroon">void*</code> return type function in C. Malloc helps to allocate dynamic memory from the heap. 
     <br>
-    <code>malloc()</code> takes a single argument or the amount of memory to allocate in bytes and returns a pointer to a block of memory.<br>
+    <code class="maroon">malloc()</code> takes a single argument or the amount of memory to allocate in bytes and returns a pointer to a block of memory.<br>
     malloc's functional syntax, <br>
-    <code>void *malloc(size_t size);</code> <br>
-    when a program wants memory space from malloc, malloc asks <code>sbrk()</code> to increment the heap size and returns a pointer<br> to the start of the new region on the heap.<br>
-    <code>sbrk()</code> is a unix based system call, actually sbrk is a memory management system call.  
-    <code>sbrk() </code>increments the program's data <br>space by increment bytes.Calling <code>sbrk()</code> with an increment of 0 can be used to find the current location of the program break.<br>
+    <code class="maroon">void *malloc(size_t size);</code> <br>
+    when a program wants memory space from malloc, malloc asks <code class="maroon" code>sbrk()</code> to increment the heap size and returns a pointer<br> to the start of the new region on the heap.<br>
+    <code class="maroon">sbrk()</code> is a unix based system call, actually sbrk is a memory management system call.  
+    <code class="maroon">sbrk() </code>increments the program's data <br>space by increment bytes.Calling <code class="maroon">sbrk()</code> with an increment of 0 can be used to find the current location of the program break.<br>
     <br>
     Let's come back to the malloc.
     memory layout of a program.
     <br>
     <img src="images/heap.png"></img>
+    <i style="font-size: 13px">image source: Internet</i>
     <br>
     lets know malloc via compiling a program,
     <br>
@@ -114,27 +119,32 @@
     
    
 
-      <code class="codebox" style="color:black">
+      <code class="codebox" style="color:maroon">
         #include &ltstdio.h&gt
         #include &ltstdlib.h&gt
         int main(void) {
           &nbsp int *p;
-          &nbsp // p = 0x42;
-          &nbsp printf("Pointer before malloc(): %p\n", &p);<br>
-          &nbsp p = (int *)malloc(sizeof(int));<br>
+          &nbsp printf("Pointer before malloc(): %p\n", p);<br>
+          &nbsp p = (int *)malloc(sizeof(int)*100);<br>
           &nbsp printf("Pointer after malloc(): %p\n", p);  <br>  &nbsp return (0);<br>
-      }<br>
-
-    </code> <i style="font-size: 13px;">code taken from jraleman's Medium article</i>
+      }  </code> <!-- i style="font-size: 13px;">code taken from jraleman's Medium article</i>-->
 
     <br>
     <code style="color:black">
       <strong>Output</strong><br>
-     Pointer before malloc(): 0x7ffc35b146e0<br>
+     Pointer before malloc(): (nil)<br>
       Pointer after malloc(): 0x561099026280
 
 
     </code>
+    <br>
+    <br>
+    <code  style="color:maroon;">
+      p = (int *)malloc(sizeof(int)*100);
+    </code>
+    <br>
+
+    Since the size of <code class="maroon">int</code> is 4 bytes, this statement will allocate 400 bytes of memory <br>and the pointer p holds the address of the first byte in the allocated memory.
 
   
   
