@@ -103,9 +103,9 @@
     <code class="maroon">malloc()</code> takes a single argument or the amount of memory to allocate in bytes and returns a pointer to a block of memory.<br>
     malloc's functional syntax, <br>
     <code class="maroon">void *malloc(size_t size);</code> <br>
-    when a program wants memory space from malloc, malloc asks <code class="maroon" code>sbrk()</code> to increment the heap size and returns a pointer<br> to the start of the new region on the heap.<br>
-    <code class="maroon">sbrk()</code> is a unix based system call, actually sbrk is a memory management system call.  
-    <code class="maroon">sbrk() </code>increments the program's data <br>space by increment bytes.Calling <code class="maroon">sbrk()</code> with an increment of 0 can be used to find the current location of the program break.<br>
+    when a program wants memory space from malloc, malloc asks <code class="maroon" code>sbrk()</code> to increment the heap size and returns a pointer<br> to the start of the new region on the heap.
+    <code class="maroon">sbrk()</code> is a Unix/Linux based system call, actually sbrk is a memory management<br> system call.  
+    <code class="maroon">sbrk() </code>increments the program's data space by increment bytes.Calling <code class="maroon">sbrk()</code> with an increment of 0 can be <br>used to find the current location of the program break.<br>
     <br>
     Let's come back to the malloc.
     memory layout of a program.
@@ -144,7 +144,7 @@
     </code>
     <br>
 
-    Since the size of <code class="maroon">int</code> is 4 bytes, this statement will allocate 400 bytes of memory <br>and the pointer p holds the address of the first byte in the allocated memory.
+    Since the size of <code class="maroon">int</code> is 4 bytes, this statement will allocate 400 bytes of memory and the pointer p holds the <br>address of the first byte in the allocated memory.
 
   
   
