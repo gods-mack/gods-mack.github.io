@@ -127,7 +127,9 @@
           &nbsp printf("Pointer before malloc(): %p\n", p);<br>
           &nbsp p = (int *)malloc(sizeof(int)*100);<br>
           &nbsp printf("Pointer after malloc(): %p\n", p);  <br>  &nbsp return (0);<br>
-      }  </code> <!-- i style="font-size: 13px;">code taken from jraleman's Medium article</i>-->
+      }  </code>
+
+       <!-- i style="font-size: 13px;">code taken from jraleman's Medium article</i>-->
 
     <br>
     <code style="color:black">
@@ -145,6 +147,49 @@
     <br>
 
     Since the size of <code class="maroon">int</code> is 4 bytes, this statement will allocate 400 bytes of memory and the pointer p holds the <br>address of the first byte in the allocated memory.
+
+    <br>
+    <br>
+   simple system call based malloc implementation.
+   <br>
+
+     <code class="codebox" style="color:maroon">
+      #include &ltassert.h&gt
+      #include &ltstring.h&gt
+          #include &ltsys/types.h&gt
+        #include &ltunistd.h&gt
+
+  void *malloc(size_t size) {
+   &nbsp void *p = sbrk(0);
+   &nbsp void *request = sbrk(size);
+   &nbsp if (request == (void*) -1) {
+   &nbsp  &nbsp   return NULL; // sbrk failed.
+   &nbsp } 
+    &nbsp else {
+   &nbsp  &nbsp  assert(p == request); // Not thread safe.
+      &nbsp &nbsp return p;
+  &nbsp  }
+  }
+      </code> 
+      <i style="font-size: 13px">Code source: danluu.com</i>
+
+      <br>
+      <br>
+
+      what if you want to make your own malloc function?
+      <br>
+      <br>
+      <i > "What I cannot create, I do not understand”.
+        <br> 
+      &nbsp &nbsp &nbsp  &nbsp  &nbsp  &nbsp  &nbsp  &nbsp  &nbsp  &nbsp  &nbsp  &nbsp  &nbsp  &nbsp  &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp-<strong> Richard Feynman</strong></i>
+      <br>
+      <br>
+
+
+      When we ask for some chunks of bytes from malloc. malloc always return contiguous block of memory from the heap.The heap <br>region we get from OS/Kernel has to be contiguous , so we cannot return a block of memory in the middle to the OS.
+
+
+
 
   
   

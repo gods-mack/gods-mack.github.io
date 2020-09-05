@@ -41,7 +41,25 @@
       .lino{
         margin-left:200px;
       }
-    
+      .updateDate{
+      	text-align: center;
+      }
+     	    
+     #footer {
+  			 position: fixed;
+    		bottom: 0;
+    		width: 100%;
+		}
+	#center {
+    	width: 500px;
+    	margin: 0 auto;
+    	font-size: 13px;
+	}
+	.last-updated {
+    font-size: small;
+    text-transform: uppercase;
+    background-color: #fffdd4;
+} 
     
 
     </style>
@@ -123,9 +141,44 @@
 
 	
 
+	
+	<!--div id="footer">
+        <div id="center">
+           Last update Sep 4,2020 
+        </div>
+    </div>-->
+    
 
 
-   <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>  	
+   <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   <script type="text/javascript"> 
+        var myDate = new Date(); 
+        var myDay = myDate.getDay(); 
+        
+        // Array of days. 
+        var weekday = ['Sunday', 'Monday', 'Tuesday', 
+            'Wednesday', 'Thursday', 'Friday', 'Saturday' 
+        ]; 
+       
+        document.write("<br/>"); 
+         document.write("<br/>"); 
+
+
+        
+      var x =  document.write("Last updated: "+document.lastModified); 
+      document.getElementById("demo").innerHTML = x;
+        
+
+        /*document.write("<div id="footer">");
+        document.write("<div id="center">");
+          document.write("Last updated: "+document.lastModified);
+       document.write("</div>");
+        document.write("</div>");
+    */
+        
+        // et hour value. 
+        
+    </script> 	
   </body>
 
  </html> 
