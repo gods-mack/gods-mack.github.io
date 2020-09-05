@@ -176,7 +176,7 @@
       <br>
       <br>
 
-      what if you want to make your own malloc function?
+      What if you want to make your own malloc function?
       <br>
       <br>
       <i > "What I cannot create, I do not understand”.
@@ -187,7 +187,22 @@
 
 
       When we ask for some chunks of bytes from malloc. malloc always return contiguous block of memory from the heap.The heap <br>region we get from OS/Kernel has to be contiguous , so we cannot return a block of memory in the middle to the OS.
+      <br>
+      <br>
 
+      <strong style="font-size: 20px;">How do you implement a memory allocator?</strong>
+      <br>
+      <i>Good question, Let's implement a memory allocator</i>
+      <br>
+      <br>
+      First we need to know,The main challenges are,<br>
+      &nbsp - Need to minimize <strong>fragmentation</strong> (i.e. maximize memory utilization)<br>
+      &nbsp - Need high performance<br>
+      &nbsp - Fiddly implementation (lots of pointer manipulation using linked lists and pointer arithmetic)
+
+      <br>
+      <br>
+      A memory allocator needs to keep track every memory chunk bytes are currently allocated or free. We can assume that <br>our heap memory as list of blocks where each block is either allocated(free flag set to 0)  or free (free flag set to 1).
 
 
 
