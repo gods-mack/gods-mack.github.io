@@ -192,7 +192,7 @@
 
       <strong style="font-size: 20px;">How do you implement a memory allocator?</strong>
       <br>
-      <i>Good question, Let's implement a memory allocator</i>
+      <i>Good question, Let's implement one</i>
       <br>
       <br>
       First we need to know,The main challenges are,<br>
@@ -204,10 +204,30 @@
       <br>
       A memory allocator needs to keep track every memory chunk bytes are currently allocated or free. We can assume that <br>our heap memory as list of blocks where each block is either allocated(free flag set to 0)  or free (free flag set to 1).
 
+      <br>
+      <br>
+      We make memory blocks to track next free or used/unused memory chunk. actually we store meta-data information into this <br> structure block.
+      <br>
+      <br>
+         <img style="width:1050px;height:190px;" src="images/memory_block.png" alt="memory_block for meta-data"></img>
 
-
+      <br>
+      
+      Lets create a memory block for storing meta-deta utilizing C style <Code style="color:maroon">struct</Code>
+      <br>
   
-  
+      <code style="color:maroon">
+        struct block &nbsp{<br>
+        &nbsp size_t size;<br>
+        &nbsp int free;  <code style="color:grey">// sometime also known as used flag</code><br>
+        &nbsp struct block *next;<br>
+      }
+      </code>
+      <br> 
+      <strong>size</strong> define number of bytes to be allocated. <br>
+      <strong>free</strong> represents that this memory chunk is free or unused. <br>
+      <strong>*next</strong> pointer store address of next memory chunk of heap. <br>
+   
 
 
 
