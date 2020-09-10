@@ -1,0 +1,32 @@
+html, body {
+  margin: 0 auto;
+  background-color: #171c28;
+  color: #afafbf;
+}
+
+.heading {
+  text-align: center;
+  margin: 1rem;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+}
+
+@media only screen and (max-width: 900px) {
+  .card-img-top {
+    width: 100%;
+    height: 25vw;
+    object-fit: cover;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .card-img-top {
+    width: 100%;
+    height: 50vw;
+    object-fit: cover;
+  }
+}
