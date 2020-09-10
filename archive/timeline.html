@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+  	<style>
+	
+	
+      h1 {
+      	
+      	margin-right: 20px;
+      		}
+      h2 {
+      	margin-left: 1000px;
+      }
+      h4{
+      	margin-left: 197px;
+      }
+      div{
+      	margin-left: 2px;
+      }
+      p {margin-left: 200px;}
+      
+
+      .verticalLine {
+        border-left: 4px solid maroon;
+        height: 45px;
+        margin-left: 200px;
+        margin-top: 50px;
+        margin-right: 3px;
+        border-right: 10px;
+      }
+      .date{
+      	font-size: 13px;
+      }
+     
+      a.ex1:hover{
+      	color: maroon;
+      } 
+      a.ex1:active {color: maroon;}
+
+      .lino{
+        margin-left:200px;
+      }
+      .updateDate{
+      	text-align: center;
+      }
+     	    
+     #footer {
+  			 position: fixed;
+    		bottom: 0;
+    		width: 100%;
+		}
+	#center {
+    	width: 500px;
+    	margin: 0 auto;
+    	font-size: 13px;
+	}
+	.last-updated {
+    font-size: small;
+    text-transform: uppercase;
+    background-color: #fffdd4;
+} 
+    
+
+    </style>
+
+
+
+  	
+
+  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+
+  	<title>Archive</title>
+  
+  	
+
+  </head>
+  <body>
+
+
+  	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <!--a class="navbar-brand" href="#">Navbar</a>-->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav" style="">
+      <a class="nav-item nav-link active" href="http://bitsandbyte.ml">Home </a>
+      <a class="nav-item nav-link" href="http://bitsandbyte.ml/archive/timeline.html">Archives<span class="sr-only">(current)</span> </a>
+      <a class="nav-item nav-link" href="http://bitsandbyte.ml/img/resume.pdf">Resume</a>
+      <!--a class="nav-item nav-link disabled" href="#">Disabled</a>-->
+    </div>
+  </div>
+</nav>
+
+
+	<div style="margin-top:40px;">
+	<font face="Times New Roman" size ="8" class="verticalLine">Articles</font>
+	</div>
+	<hr class="lino">
+	
+
+	<div>
+		<a  class="ex1" href="malloc.html"><h4 style="color:black">Malloc in details</h4></a>
+	</div>
+	<div>
+		<p class="date">Aug 28, 2020</p>
+	</div>
+
+	<hr class="lino">
+
+
+	<div>
+		<a class="ex1" href="interrupt.html"><h4 style="color:black">Interrupts and Interrupts in Linux</h4></a>
+	</div>
+	<div>
+		<p class="date">Aug 26, 2020</p>
+	</div>
+	<hr class="lino">
+
+
+	<div>
+		<a class="ex1" href="face-detect.html"><h4 style="color:black">Face-detection utilizing C++</h4></a>
+	</div>
+	<div>
+		<p class="date">Aug 25, 2020</p>
+	</div>
+	<hr class="lino">
+
+	<div>
+		<a class="ex1" href="udp.html"><h4 style="color:black">UDP socket programming in C</h4></a>
+	</div>
+	<div>
+		<p class="date">Sep 3, 2020</p>
+	</div>
+	<hr class="lino">
+
+
+
+	
+
+	
+	<!--div id="footer">
+        <div id="center">
+           Last update Sep 4,2020 
+        </div>
+    </div>-->
+    
+
+
+   <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   <script type="text/javascript"> 
+        var myDate = new Date(); 
+        var myDay = myDate.getDay(); 
+        
+        // Array of days. 
+        var weekday = ['Sunday', 'Monday', 'Tuesday', 
+            'Wednesday', 'Thursday', 'Friday', 'Saturday' 
+        ]; 
+       
+        document.write("<br/>"); 
+         document.write("<br/>"); 
+
+
+        
+      var x =  document.write("Last updated: "+document.lastModified); 
+      document.getElementById("demo").innerHTML = x;
+        
+
+        /*document.write("<div id="footer">");
+        document.write("<div id="center">");
+          document.write("Last updated: "+document.lastModified);
+       document.write("</div>");
+        document.write("</div>");
+    */
+        
+        // et hour value. 
+        
+    </script> 	
+  </body>
+
+ </html> 

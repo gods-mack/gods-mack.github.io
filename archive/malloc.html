@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+  	<style>
+      h2 {text-align: center;}
+      p {margin-left: 200px;}
+
+      .maroon{
+        color: maroon;
+      }
+
+
+      .verticalLine {
+        border-left: 4px solid maroon;
+        height: 50px;
+        margin-left: 200px;
+        margin-top: 50px;
+        margin-right: 3px;
+        border-right: 1000px;
+      }
+
+      .lino{
+        margin-left:200px;
+      }
+
+      .codebox {
+        border:1px solid black;
+        background-color:#EEEEFF;
+        white-space: pre-line;
+        padding:4px;
+        font-size:0.9em;
+        display: inline-block;
+      }
+
+      @media screen and (max-width: 1280px) {
+  .section {
+    padding: 100px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .section {
+    padding: 50px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .section {
+    display: block;
+  }
+}
+@media screen and (max-width: 480px) {
+  .section {
+    padding: 50px 35px;
+  }
+}
+    
+
+    </style>
+  	
+
+  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+
+  	<title>malloc in detail and depth</title>
+  
+  	
+
+  </head>
+  <body>
+
+
+  	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <!--a class="navbar-brand" href="#">Navbar</a>-->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="http://bitsandbyte.ml">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="http://bitsandbyte.ml/archive/timeline.html">Archives</a>
+      <a class="nav-item nav-link" href="http://bitsandbyte.ml/img/resume.pdf">Resume</a>
+      <!--a class="nav-item nav-link disabled" href="#">Disabled</a>-->
+    </div>
+  </div>
+</nav>
+
+
+	<!--h1 class="verticalLine">Malloc in detail and depth</h1>-->
+  <div style="margin-top: 40px;">
+  <font face="Times New Roman" size ="8" class="verticalLine">Malloc in detail and depth</font>
+</div>
+  
+  <p>26 Aug, 2020</p>
+	<hr class="lino">
+
+  <p>
+    This tutorial needs understanding of <a href="https://www.cprogramming.com/tutorial/c/lesson6.html">Pointers</a> as prerequisites.
+    <br>
+    <br>
+    <strong>Malloc</strong> is a <code class="maroon">void*</code> return type function in C. Malloc helps to allocate dynamic memory from the heap. 
+    <br>
+    <code class="maroon">malloc()</code> takes a single argument or the amount of memory to allocate in bytes and returns a pointer to a block of memory.<br>
+    malloc's functional syntax, <br>
+    <code class="maroon">void *malloc(size_t size);</code> <br>
+    when a program wants memory space from malloc, malloc asks <code class="maroon" code>sbrk()</code> to increment the heap size and returns a pointer<br> to the start of the new region on the heap.
+    <code class="maroon">sbrk()</code> is a Unix/Linux based system call, actually sbrk is a memory management<br> system call.  
+    <code class="maroon">sbrk() </code>increments the program's data space by increment bytes.Calling <code class="maroon">sbrk()</code> with an increment of 0 can be <br>used to find the current location of the program break.<br>
+    <br>
+    Let's come back to the malloc.
+    memory layout of a program.
+    <br>
+    <img src="images/heap.png"></img>
+    <i style="font-size: 13px">image source: Internet</i>
+    <br>
+    lets know malloc via compiling a program,
+    <br>
+    
+    
+   
+
+      <code class="codebox" style="color:maroon">
+        #include &ltstdio.h&gt
+        #include &ltstdlib.h&gt
+        int main(void) {
+          &nbsp int *p;
+          &nbsp printf("Pointer before malloc(): %p\n", p);<br>
+          &nbsp p = (int *)malloc(sizeof(int)*100);<br>
+          &nbsp printf("Pointer after malloc(): %p\n", p);  <br>  &nbsp return (0);<br>
+      }  </code>
+
+       <!-- i style="font-size: 13px;">code taken from jraleman's Medium article</i>-->
+
+    <br>
+    <code style="color:black">
+      <strong>Output</strong><br>
+     Pointer before malloc(): (nil)<br>
+      Pointer after malloc(): 0x561099026280
+
+
+    </code>
+    <br>
+    <br>
+    <code  style="color:maroon;">
+      p = (int *)malloc(sizeof(int)*100);
+    </code>
+    <br>
+
+    Since the size of <code class="maroon">int</code> is 4 bytes, this statement will allocate 400 bytes of memory and the pointer p holds the <br>address of the first byte in the allocated memory.
+
+    <br>
+    <br>
+   simple system call based malloc implementation.
+   <br>
+
+     <code class="codebox" style="color:maroon">
+      #include &ltassert.h&gt
+      #include &ltstring.h&gt
+          #include &ltsys/types.h&gt
+        #include &ltunistd.h&gt
+
+  void *malloc(size_t size) {
+   &nbsp void *p = sbrk(0);
+   &nbsp void *request = sbrk(size);
+   &nbsp if (request == (void*) -1) {
+   &nbsp  &nbsp   return NULL; // sbrk failed.
+   &nbsp } 
+    &nbsp else {
+   &nbsp  &nbsp  assert(p == request); // Not thread safe.
+      &nbsp &nbsp return p;
+  &nbsp  }
+  }
+      </code> 
+      <i style="font-size: 13px">Code source: danluu.com</i>
+
+      <br>
+      <br>
+
+      What if you want to make your own malloc function?
+      <br>
+      <br>
+      <i > "What I cannot create, I do not understand”.
+        <br> 
+      &nbsp &nbsp &nbsp  &nbsp  &nbsp  &nbsp  &nbsp  &nbsp  &nbsp  &nbsp  &nbsp  &nbsp  &nbsp  &nbsp  &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp-<strong> Richard Feynman</strong></i>
+      <br>
+      <br>
+
+
+      When we ask for some chunks of bytes from malloc. malloc always return contiguous block of memory from the heap.The heap <br>region we get from OS/Kernel has to be contiguous , so we cannot return a block of memory in the middle to the OS.
+      <br>
+      <br>
+
+      <strong style="font-size: 20px;">How do you implement a memory allocator?</strong>
+      <br>
+      <i>Good question, Let's implement one</i>
+      <br>
+      <br>
+      First we need to know,The main challenges are,<br>
+      &nbsp - Need to minimize <strong>fragmentation</strong> (i.e. maximize memory utilization)<br>
+      &nbsp - Need high performance<br>
+      &nbsp - Fiddly implementation (lots of pointer manipulation using linked lists and pointer arithmetic)
+
+      <br>
+      <br>
+      A memory allocator needs to keep track every memory chunk bytes are currently allocated or free. We can assume that <br>our heap memory as list of blocks where each block is either allocated(free flag set to 0)  or free (free flag set to 1).
+
+      <br>
+      <br>
+      We make memory blocks to track next free or used/unused memory chunk. actually we store meta-data information into this <br> structure block.
+      <br>
+      <br>
+         <img style="width:1050px;height:190px;" src="images/memory_block.png" alt="memory_block for meta-data"></img>
+
+      <br>
+      
+      Lets create a memory block for storing meta-deta utilizing C style <Code style="color:maroon">struct</Code>
+      <br>
+  
+      <code style="color:maroon">
+        struct block &nbsp{<br>
+        &nbsp size_t size;<br>
+        &nbsp int free;  <code style="color:grey">// sometime also known as used flag</code><br>
+        &nbsp struct block *next;<br>
+      }
+      </code>
+      <br> 
+      <strong>size</strong> define number of bytes to be allocated. <br>
+      <strong>free</strong> represents that this memory chunk is free or unused. <br>
+      <strong>*next</strong> pointer store address of next memory chunk of heap. <br>
+   
+
+
+
+
+  </p>
+  
+
+	
+
+   <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>  	
+  </body>
+
+ </html> 
