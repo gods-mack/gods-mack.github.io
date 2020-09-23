@@ -227,7 +227,79 @@
       <strong>size</strong> define number of bytes to be allocated. <br>
       <strong>free</strong> represents that this memory chunk is free or unused. <br>
       <strong>*next</strong> pointer store address of next memory chunk of heap. <br>
+
+      <br>
+      <code class="maroon">
+        char memory[20000];
+      </code>
+      <br>
+      This is our memory or temporary heap, we are assuming that our heap or memory size is 20000 bytes. (if char takes <br> 1 byte in your system)
    
+      <br>
+      <br>
+      <code class="maroon">struct block *freeList = (void*)memory;</code>
+      <br> <code style="color: black">*freeList</code> is a block type pointer it always points to any currently free chunk of memory. actually <code style="color: black">*freeList</code> pointer will point<br> to the start of the linked list of metadata blocks.The starting address of the array (memory) should be casted to type void so that we <br>are able< to allocate blocks of memory which are of different datatypes.(int, char, float etc.)
+
+      <br>
+      <br> 
+      <code class="maroon"> 
+                 void initalize() {<br>
+            &nbsp freeList->size = 20000 - sizeof(struct block);<br>
+            &nbsp     freeList->free = 1; <br>
+          &nbsp freeList->next = NULL;<br>
+            }
+      </code>
+      <br>
+      This function intialize system memory or make <code style="color: black">*freeList</code> to ready.
+      Here we defines our first free memory chunk<br> size of 20000 bytes - sizeof(block). and we intialize 
+      this memory block as free by  <code style="color: black">freeList->free = 1</code>. and  <code style="color: black">next = NULL</code><br> because there is no other next metadata block ye
+      <br>
+      <br>
+      <code class="maroon">
+        void *mymalloc(size_t size) {<br>
+
+  &nbsp struct block *curr,*prv; <br>
+  &nbsp void *result;<br>
+
+  &nbsp if(!freeList->size) {<br>
+   &nbsp &nbsp  initalize();<br>
+   &nbsp &nbsp  printf("<code style="color:grey">system memory or linked list initalized.!\n</code>");<br>
+  &nbsp }<br>
+
+&nbsp  curr = freeList;<br>
+
+  &nbsp while((curr->size < size || curr->free==0) && curr->next!=NULL) {<br>
+  &nbsp &nbsp  prv = curr; <br>
+   &nbsp &nbsp curr = curr->next; <br>
+   &nbsp &nbsp printf("<code style="color:grey">moving block by block to find first fit slot\n</code>"); <br>
+  &nbsp } <br>
+ 
+  &nbsp if(curr->size == size) { <br>
+   &nbsp &nbsp  curr->free = 0; <br>
+
+   &nbsp  &nbsp result = (void*)curr; <br>
+
+   &nbsp &nbsp  printf("<code style="color:grey">Found exact fit slot!\n</code>"); <br>
+   &nbsp &nbsp  return result; <br>
+
+ &nbsp  } <br>
+ &nbsp  else if(curr->size > size+sizeof(struct block)) { <br>
+ &nbsp &nbsp    split(curr,size); <br>
+  &nbsp &nbsp   curr++; <br>
+  &nbsp &nbsp  result = (void*)curr; <code style="color:grey"> // curr + sizeof(block)</code> <br>
+ 
+  &nbsp &nbsp  printf("<code style="color:grey">allocated memory with split\n</code>"); <br>
+ &nbsp &nbsp   return result; <br>
+
+ &nbsp } <br>
+ &nbsp else{ <br>
+  &nbsp &nbsp  printf("<code style="color:grey">not enough memory found.!\n</code>"); <br>
+   &nbsp &nbsp return NULL; <br>
+  &nbsp }<br>
+
+}<br>
+</code>
+This is our main booming function.
 
 
 
