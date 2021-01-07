@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+  	<style>
+      h2 {text-align: center;}
+      p {margin-left: 200px;}
+
+      .maroon{
+        color: maroon;
+      }
+
+
+      .verticalLine {
+        border-left: 4px solid maroon;
+        height: 50px;
+        margin-left: 200px;
+        margin-top: 50px;
+        margin-right: 3px;
+        border-right: 1000px;
+      }
+
+      .lino{
+        margin-left:200px;
+      }
+
+      .codebox {
+        border:1px dashed;
+        background-color:#EEE;
+        white-space: pre-line;
+        padding:4px;
+        font-size:0.7em;
+        display: inline-block;
+        width:80vw;
+      }
+
+      @media screen and (max-width: 1280px) {
+  .section {
+    padding: 100px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .section {
+    padding: 50px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .section {
+    display: block;
+  }
+}
+@media screen and (max-width: 480px) {
+  .section {
+    padding: 50px 35px;
+  }
+}
+    
+
+    </style>
+  	
+
+  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+
+  	<title>How to use mutex lock to make data-structure thread safe?</title>
+
+  
+  	
+
+  </head>
+  <body>
+
+
+  	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <!--a class="navbar-brand" href="#">Navbar</a>-->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="http://bitsandbyte.ml">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="http://bitsandbyte.ml/archive/timeline.html">Archives</a>
+      <a class="nav-item nav-link" href="http://bitsandbyte.ml/img/resume.pdf">Resume</a>
+      <!--a class="nav-item nav-link disabled" href="#">Disabled</a>-->
+    </div>
+  </div>
+</nav>
+
+
+	<!--h1 class="verticalLine">Malloc in detail and depth</h1>-->
+  <div style="margin-top: 40px;">
+  <font face="Times New Roman" size ="6" class="verticalLine">How to use mutex lock to make data-structure thread safe?</font>
+</div>
+  
+  <p>26 Aug, 2020</p>
+	<hr class="lino">
+
+  <p>
+    This tutorial needs basic understanding of C programming and mutex lock concept as prerequisites.
+    <br>
+    <br>
+
+    This is just a basic introduction - making highly efficient thread safe data-structure requires its own book. <br>making things thread safe is very important in system level stuff.
+    <br>
+    Let's take an example obviously it would be code =)
+    <br>
+      <code  class="codebox" style="color:maroon">
+        #include &ltstdio.h&gt 
+        #define SIZE 10
+
+        int stack[SIZE];
+        int top;<br>
+        void push(int x) { 
+          &nbsp   &nbsp stack[top++] = x; 
+        }
+        int pop() {
+          &nbsp &nbsp return stack[--top];
+        }
+
+        int main(void) { }
+          </code>
+          <br>
+        in this above code stack is not thread safe. beacuse if somehow two threads call push() and pop() function at <br>
+        the same time then the data or the stack can be incosistent.<br>
+        For example, if two threads call pop() at the same time then both threads  may read same value beacuse of the <br>same value 
+        of top (pointer(index) which pointing to top of the stack )<br><br>
+
+        To make things thread safe, firstly we have to identify the critical section or critical section code/instructions.
+
+  </p>
+  
+
+	
+
+   <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>  	
+  </body>
+
+ </html> 
